@@ -4,10 +4,11 @@ from limit_switch import LimitSwitch
 
 
 class Logic(LimitSwitch):
-    def __init__(self, door_sw_pin, rfid_device):
+    def __init__(self, door_sw_pin, rfid_device_1, rfid_device_2):
         super().__init__(door_sw_pin)
 
-        self.inst_rfid = RFID(rfid_device)
+        self.inst_rfid_1 = RFID(rfid_device_1)
+        self.inst_rfid_2 = RFID(rfid_device_2)
         self.last_rfid = None
         self.door_opened = False
         self.open_time = None
@@ -16,9 +17,13 @@ class Logic(LimitSwitch):
     def scan(self):
         status = str()
 
-        rfid = self.inst_rfid.read()
-        if rfid is not None:
-            self.last_rfid = rfid
+        rfid_1 = self.inst_rfid_1.read()
+        rfid_2 = self.inst_rfid_2.read()
+        if rfid_1 is not None:
+            self.last_rfid = rfid_1
+            self.rfid_time = time()
+        elif rfid_2 is not None:
+            self.last_rfid = rfid_2
             self.rfid_time = time()
 
         if self.switch.value:

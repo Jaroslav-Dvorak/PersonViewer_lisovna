@@ -5,7 +5,7 @@ from is_rpi import is_rpi
 if is_rpi():
     pin_factory = PiGPIOFactory(host='127.0.0.1')
 else:
-    pin_factory = PiGPIOFactory(host='10.110.30.3')
+    pin_factory = PiGPIOFactory(host='10.0.0.80')
 
 
 class LimitSwitch:

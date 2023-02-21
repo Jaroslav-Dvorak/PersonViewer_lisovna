@@ -29,9 +29,9 @@ sudo apt install xscreensaver
 
 autostart:
 mkdir /home/pi/.config/autostart
-nano /home/pi/.config/autostart/personviewer.desktop
+nano /home/pi/.config/autostart/personviewer_lisovna.desktop
 
 [Desktop Entry]
 Type=Application
 Name=TMP-sorter
-Exec=lxterminal --working-directory=/home/pi/Py/TMP-sorter/ -e "sudo python3 main.py"
+Exec=lxterminal --working-directory=/home/pi/Py/PersonViewer_lisovna/ -e "sudo python3 main.py"
