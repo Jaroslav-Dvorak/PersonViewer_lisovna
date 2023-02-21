@@ -1,0 +1,37 @@
+PC:
+===
+pip install pyserial
+pip install pyodbc
+pip install gpiozero
+
+************************************************************************************
+raspberry pi:
+=============
+sudo apt-get install unixodbc
+sudo apt-get install unixodbc-dev
+sudo apt-get install freetds-dev
+sudo apt-get install tdsodbc
+sudo apt-get install freetds-bin
+pip install pyodbc
+
+sudo nano /etc/odbcinst.ini
+[FreeTDS]
+Description = FreeTDS unixODBC Driver
+Driver = /usr/lib/arm-linux-gnueabihf/odbc/libtdsodbc.so
+Setup = /usr/lib/arm-linux-gnueabihf/odbc/libtdsodbc.so
+UsageCount = 1
+
+enable "remote gpio" in configuration
+sudo systemctl enable pigpiod
+
+sudo apt install xscreensaver
+-- disable screensaver
+
+autostart:
+mkdir /home/pi/.config/autostart
+nano /home/pi/.config/autostart/personviewer.desktop
+
+[Desktop Entry]
+Type=Application
+Name=TMP-sorter
+Exec=lxterminal --working-directory=/home/pi/Py/TMP-sorter/ -e "sudo python3 main.py"
