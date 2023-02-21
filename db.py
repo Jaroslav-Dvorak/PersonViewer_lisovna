@@ -18,7 +18,7 @@ class DB:
 
     def read(self, hex_code):
         sqlstr = ("SELECT FirstName, LastName "
-                  "FROM [HOCK].[dbo].SAI_PersonMedium_0048 "
+                  "FROM [192.168.60.13\\INST1].[HOCK].[dbo].SAI_PersonMedium_0048 "
                   f"WHERE ShortCode='{hex_code}'"
                   )
         name = self.sql.get_data_from_db(sqlstr)

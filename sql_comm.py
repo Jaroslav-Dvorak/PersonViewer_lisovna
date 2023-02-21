@@ -5,7 +5,7 @@ from is_rpi import is_rpi
 class SqlComm:
     def __init__(self, server, user, password):
         self.settings = dict(
-            # database="HOCK",
+            database="master",
             server=server,
             port="1433",
             user=user,
@@ -21,7 +21,7 @@ class SqlComm:
             conn = pyodbc.connect(
                 f"Driver={self.settings['driver']};"
                 f"Server={self.settings['server']};"
-                # f"Database={self.settings['database']};"
+                f"Database={self.settings['database']};"
                 f"UID={self.settings['user']};"
                 f"PWD={self.settings['password']};"
                 f"PORT={self.settings['port']}"
