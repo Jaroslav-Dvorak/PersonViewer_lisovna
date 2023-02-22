@@ -24,13 +24,13 @@ class Scene:
                            )
         self.door = Label(self.frame,
                           text="VRATA UZAVŘENA",
-                          font=("Verdana", 50, "bold"),
+                          font=("Verdana", 100, "bold"),
                           bg=GREEN
                           )
         self.door.pack(pady=20)
-        self.person = Label(self.frame, font=("Verdana", 50, "bold"), bg=GREEN)
+        self.person = Label(self.frame, font=("Verdana", 100, "bold"), bg=GREEN)
         self.person.pack(side=TOP, expand=YES)
-        self.time = Label(self.frame, font=("Verdana", 70), bg=GREEN)
+        self.time = Label(self.frame, font=("Verdana", 140), bg=GREEN)
         self.time.pack(side=BOTTOM, pady=20)
 
         self.logic = logic

@@ -25,7 +25,7 @@ class GUI:
         # self.r_frame.frame.pack(expand=True, fill=BOTH, side=LEFT, padx=10, pady=10)
         # self.r_frame.frame.pack_propagate(0)
         frame_logic = Logic(door_sw_pin=26,
-                            rfid_device_1=dev_door_outside,
+                            rfid_device_1=dev_door_inside,
                             rfid_device_2=dev_door_outside)
         self.frame = Scene(self.root, frame_logic)
         self.frame.frame.pack(expand=True, fill=BOTH, side=LEFT, padx=10, pady=10)
