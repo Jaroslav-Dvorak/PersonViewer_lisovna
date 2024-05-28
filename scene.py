@@ -33,6 +33,8 @@ class Scene:
         self.time = Label(self.frame, font=("Verdana", 140), bg=GREEN)
         self.time.pack(side=BOTTOM, pady=20)
 
+        self.person_name = None
+
         self.logic = logic
 
         self.update()
@@ -43,24 +45,28 @@ class Scene:
         if status == "opened_correctly":
             self.frame.configure(bg=ORANGE)
             self.door.configure(text="VRATA OTEVŘENA")
-            person_name = DB.read(self.logic.last_rfid)
-            self.person.configure(text="ZODPOVĚDNÁ OSOBA:\n"+person_name)
+            if self.person_name is None:
+                self.person_name = DB.read(self.logic.last_rfid)
+            self.person.configure(text="ZODPOVĚDNÁ OSOBA:\n"+self.person_name)
 
         elif status == "opened_no_rfid":
             self.frame.configure(bg=RED)
             self.door.configure(text="VRATA OTEVŘENA\nBEZ ČIPU!")
+            self.person_name = None
 
         elif status == "no_opening":
             self.frame.configure(bg=ORANGE)
             self.door.configure(text="VRATA SE NEOTEVŘELA")
             self.person.configure(text="")
             self.time.configure(text="")
+            self.person_name = None
 
         elif status == "closed":
             self.frame.configure(bg=GREEN)
             self.door.configure(text="VRATA UZAVŘENA")
             self.person.configure(text="")
             self.time.configure(text="")
+            self.person_name = None
 
         if "opened" in status:
             t = time() - self.logic.open_time

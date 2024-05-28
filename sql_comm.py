@@ -17,26 +17,22 @@ class SqlComm:
             self.settings["driver"] = 'SQL Server'
 
     def get_data_from_db(self, sqlstr):
+        connstring = (f"Driver={self.settings['driver']};"
+                      f"Server={self.settings['server']};"
+                      f"Database={self.settings['database']};"
+                      f"UID={self.settings['user']};"
+                      f"PWD={self.settings['password']};"
+                      f"PORT={self.settings['port']}")
         try:
-            conn = pyodbc.connect(
-                f"Driver={self.settings['driver']};"
-                f"Server={self.settings['server']};"
-                f"Database={self.settings['database']};"
-                f"UID={self.settings['user']};"
-                f"PWD={self.settings['password']};"
-                f"PORT={self.settings['port']}"
-            )
-            cursor = conn.cursor()
-            cursor.execute(sqlstr)
-            newdata = cursor.fetchall()
+            cnxn = pyodbc.connect(connstring, timeout=5)
+            cursor = cnxn.cursor()
+            with cnxn:
+                cursor.execute(sqlstr)
+                newdata = cursor.fetchall()
         except Exception as e:
-            print("Error SQL:")
             print(e)
             return None
-        else:
-            cursor.close()
         return newdata
-
 
 # sql = SqlComm(server=r"192.168.60.13\inst1",
 #               user="VyrobaStandalone",

@@ -19,8 +19,7 @@ class DB:
     def read(self, hex_code):
         sqlstr = ("SELECT FirstName, LastName "
                   "FROM [192.168.60.13\\INST1].[HOCK].[dbo].SAI_PersonMedium_0048 "
-                  f"WHERE ShortCode='{hex_code}'"
-                  )
+                  f"WHERE ShortCode='{hex_code}'")
         name = self.sql.get_data_from_db(sqlstr)
         if (name is not None and len(name) == 1 and
                 len(name[0]) == 2 and isinstance(name[0][0], str) and isinstance(name[0][1], str)):
